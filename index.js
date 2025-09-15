@@ -20,9 +20,11 @@ if (dayOfWeek === 0 || dayOfWeek === 6) {
 console.log(`今天是工作日（周${dayOfWeek === 1 ? '一' : dayOfWeek === 2 ? '二' : dayOfWeek === 3 ? '三' : dayOfWeek === 4 ? '四' : '五'}），开始执行任务`);
 
 // 检查当前时间是否在工作时间内（9-19点）
+// 注意：这里使用本地时间，需要确保 GitHub Actions 的 cron 时间与本地时区匹配
 const currentHour = today.getHours();
 if (currentHour < 9 || currentHour >= 19) {
   console.log(`当前时间 ${currentHour}:${today.getMinutes().toString().padStart(2, '0')} 不在工作时间（9-19点）内，不执行任务`);
+  console.log(`当前时区: ${Intl.DateTimeFormat().resolvedOptions().timeZone}`);
   process.exit(0);
 }
 
