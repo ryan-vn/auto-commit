@@ -2,7 +2,7 @@ name: autocommit-robot
 
 on:
   schedule:
-    - cron: "30 14 * * *"  # 每天北京时间 21:45 执行
+    - cron: "* * * * *"  # 每天北京时间 21:45 执行
   workflow_dispatch:  # 允许手动触发
 
 jobs:
