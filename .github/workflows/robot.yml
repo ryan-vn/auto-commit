@@ -2,7 +2,7 @@ name: autocommit-robot
 
 on:
   schedule:
-  - cron: "15 0,6,12,18 * * *"
+  - cron: "0 0 * * *"
 
 jobs:
   bots:
@@ -29,6 +29,7 @@ jobs:
           author_email: vincent.cy@qq.com
           message: "feat: save robot"
           add: "pictures/*"
+          ignore: ".robot.lock"
 
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
