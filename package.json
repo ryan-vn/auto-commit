@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7",
     "request": "^2.88.2"
   }
 }

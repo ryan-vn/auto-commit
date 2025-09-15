@@ -2,34 +2,32 @@ name: autocommit-robot
 
 on:
   schedule:
-  - cron: "45 13 * * *"
+    - cron: "30 14 * * *"  # 每天北京时间 21:45 执行
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   bots:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout code"
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: "Set node"
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: "20"
 
-      - name: "Install"
+      - name: "Install dependencies"
         run: npm install
 
-      - name: "Run bash"
+      - name: "Run robot script"
         run: node index.js
 
-      - name: "Commit"
-        uses: EndBug/add-and-commit@v4
+      - name: "Commit changes"
+        uses: EndBug/add-and-commit@v9
         with:
           author_name: Vincent
           author_email: vincent.cy@qq.com
           message: "feat: save robot"
           add: "pictures/*"
           ignore: ".robot.lock"
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
